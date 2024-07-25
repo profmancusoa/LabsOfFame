@@ -103,9 +103,9 @@
         margin-top: 2%;
         margin-bottom: 2%;
         padding: 20px;
-        background-color: #333; /* Darker background */
+        background-color: #f9fafb;
         border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         display: flex; /* Add flexbox layout */
         justify-content: space-between; /* Space elements evenly */
     }
@@ -115,8 +115,7 @@
         margin-bottom: 20px;
         border: none;
         border-radius: 5px;
-        background-color: #444; /* Dark background */
-        color: #fff; /* White text */
+        background-color: #ffffff;
         cursor: pointer;
         appearance: none;
         -webkit-appearance: none;
@@ -138,12 +137,11 @@
         border: 1px solid #66afe9;
         box-shadow:
             inset 0 1px 1px rgba(0, 0, 0, 0.075),
-            0 0 8px rgba(102, 175, 233, 0.6);
+            0 0 8px rgba(0, 0, 0, 0.6);
     }
     label {
         display: block;
         margin-bottom: 10px;
         font-weight: bold;
-        color: #fff; /* White text */
     }   
 </style>
