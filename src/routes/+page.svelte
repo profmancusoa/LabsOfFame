@@ -23,33 +23,44 @@
         return get_db.val();
     };
 
-    const update_table = async (mat, classe) => {
-        if (mat === "all") {
-            let all_subjetcs = Object.values(full_db.TPSI)
-                .concat(
-                    Object.values(full_db.reti),
-                    Object.values(full_db.informatica),
-                )
-                .filter((e) => e.class == classe);
-
-            leaderboard = Array.from(
-                new Set(all_subjetcs.map((e) => e.username)),
+    const sum_subject_points = (classe) => {
+        let all_subjetcs = Object.values(full_db.TPSI)
+            .concat(
+                Object.values(full_db.reti),
+                Object.values(full_db.informatica),
             )
-                .map((e) => all_subjetcs.filter((el) => el.username === e))
-                .map((e) => {
-                    return {
-                        username: e[0].username,
-                        avatar: e[0].avatar,
-                        class: e[0].class,
-                        points: e.reduce((acc, e) => acc + e.points, 0),
-                    };
-                })
-                .sort((a, b) => b.points - a.points);
-        } else {
-            let l = full_db[`${mat}`];
-            leaderboard = Object.values(l)
-                .sort((a, b) => b.points - a.points)
-                .filter((e) => e.class == classe);
+            .filter((e) => e.class == classe);
+
+        leaderboard = Array.from(new Set(all_subjetcs.map((e) => e.username)))
+            .map((e) => all_subjetcs.filter((el) => el.username === e))
+            .map((e) => {
+                return {
+                    username: e[0].username,
+                    avatar: e[0].avatar,
+                    class: e[0].class,
+                    points: e.reduce((acc, e) => acc + e.points, 0),
+                };
+            })
+            .sort((a, b) => b.points - a.points);
+    };
+
+    const update_table = async (mat, classe) => {
+        switch (mat) {
+            case "sum-subjects":
+                sum_subject_points(classe);
+                break;
+
+            case "all":
+                leaderboard = Object.values(full_db["generale"]).sort(
+                    (a, b) => b.points - a.points,
+                );
+                break;
+            default:
+                let l = full_db[`${mat}`];
+                leaderboard = Object.values(l)
+                    .sort((a, b) => b.points - a.points)
+                    .filter((e) => e.class == classe);
+                break;
         }
     };
 
@@ -90,10 +101,19 @@
             <option value="TPSI">TPSI</option>
             <option value="informatica">Informatica</option>
             <option value="reti">Sistemi e Reti</option>
-            <option value="all">Totale</option>
+            <option value="sum-subjects">Totale materie</option>
+            <option value="all">Generale</option>
         </select>
     </div>
 </div>
+
+{#if subject === "all"}
+    <p>
+        Classifica generale di tutti gli studenti di informatica non relativa a
+        classe o materia scolastica
+    </p>
+{/if}
+
 <Grid items={leaderboard}></Grid>
 
 <style>
@@ -109,6 +129,7 @@
         display: flex; /* Add flexbox layout */
         justify-content: space-between; /* Space elements evenly */
     }
+
     select {
         width: 100%; /* Adjust width to fit side by side */
         padding: 15px;
@@ -132,6 +153,7 @@
             1px 1.5em;
         background-repeat: no-repeat;
     }
+
     select:focus {
         outline: none;
         border: 1px solid #66afe9;
@@ -139,9 +161,15 @@
             inset 0 1px 1px rgba(0, 0, 0, 0.075),
             0 0 8px rgba(0, 0, 0, 0.6);
     }
+
     label {
         display: block;
         margin-bottom: 10px;
         font-weight: bold;
-    }   
+    }
+
+    p {
+        margin-bottom: 2%;
+        text-align: center;
+    }
 </style>
