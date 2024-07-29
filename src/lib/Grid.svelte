@@ -6,8 +6,10 @@
     TableBodyRow,
     TableHead,
     TableHeadCell,
+    Spinner,
   } from "flowbite-svelte";
   import { AwardSolid } from "flowbite-svelte-icons";
+  import user_placeholder from "./avatars/user_placeholder.png";
 
   const table_padding = "px-4 py-6 w-1/6";
   const name_width = "w-3/5";
@@ -29,6 +31,35 @@
     }
   }
   export let items;
+
+  /* Import all images from avatars folder */
+  const imageModules = import.meta.glob("./avatars/*", {
+    eager: false, // Load images on page load
+  });
+
+  /* Extract username from avatar's path. 
+    import.glob contain full path but we want only the filename(username) 
+  */
+  function image_to_username(images) {
+    // Get full path
+    const keys = Object.keys(images);
+    keys.forEach((a) => {
+      let val = imageModules[a];  // Backup value
+      delete images[a]; // Delete fullpath key
+      const username = a.replace("./avatars/", "").replace(".png", ""); // Cleanup path to get only filename(username)
+      images[username] = val; // Assign image to username
+    });
+    return images;
+  }
+
+  const user_image = image_to_username(imageModules);
+
+  async function get_user_image(username) {
+    const real_username = username.toLowerCase();
+    return Object.hasOwn(user_image, real_username)
+      ? (await user_image[real_username]()).default
+      : user_placeholder;
+  }
 </script>
 
 <!-- 
@@ -86,11 +117,27 @@
             <TableBodyCell
               class="flex items-center px-6 py-4 text-gray-900 dark:text-white {name_width} space-x-4"
             >
-              <img
-                class="lg:w-2/6 w-3/6 rounded-full"
-                src={item.avatar}
-                alt="{item.username} avatar"
-              />
+              {#await get_user_image(item.username)}
+                <Spinner size="8" />
+              {:then image}
+                <img
+                  class="lg:w-2/6 w-3/6 rounded-full"
+                  src={image}
+                  alt="{item.username} avatar"
+                />
+              {:catch error}
+                <!-- Return "" to avoid unwanted text -->
+                {() => {
+                  console.log(error);
+                  return "";
+                }}
+                <img
+                  class="lg:w-2/6 w-3/6 rounded-full"
+                  src={user_placeholder}
+                  alt="{item.username} avatar"
+                />
+              {/await}
+
               <div class="ps-3 pr-6">
                 <div class="text-base gamer-font text-4xl pr-6">
                   {item.username}
