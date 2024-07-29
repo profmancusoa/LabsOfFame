@@ -4,6 +4,8 @@
     import { initializeApp } from "firebase/app";
     import { getDatabase, child, get, ref } from "firebase/database";
     import { onMount } from "svelte";
+    import Select from "../lib/Select.svelte";
+    import Label from "../lib/Label.svelte";
 
     const firebaseConfig = {
         apiKey: "AIzaSyBv2SwNbM94fs7et1ts6aClTXreO5a6zDM",
@@ -74,41 +76,58 @@
         classe,
         subject,
         full_db = {};
+    
+    const classes = [
+        {
+            value: 3,
+            text: "3 INFO"
+        },
+        {
+            value: 4,
+            text: "4 INFO"
+        },
+        {
+            value: 5,
+            text: "5 INFO"
+        },
+    ];
+    const subjects = [
+        {
+            value: "TPSI",
+            text: "TPSI"
+        },
+        {
+            value: "informatica",
+            text: "Informatica"
+        },
+        {
+            value: "reti",
+            text: "Sistemi e Reti"
+        },
+        {
+            value: "sub-subjects",
+            text: "Totale materie"
+        },
+        {
+            value: "all",
+            text: "Generale"
+        }
+    ];
 </script>
 
-<div class="select-container">
+<div class="select-container flex justify-between max-w-screen-sm rounded-xl m-auto p-5 bg-slate-50 ">
     <div>
-        <label for="select-class">Seleziona la classe:</label>
-        <select
-            name="classe"
-            id="classe"
-            bind:value={classe}
-            on:change={update_table(subject, classe)}
-        >
-            <option value="3">3 Info</option>
-            <option value="4">4 Info</option>
-            <option value="5">5 Info</option>
-        </select>
+        <Label parent="select-class" text="Seleziona la classe:"></Label>
+        <Select options={classes} bind:value={classe} on_change={() => update_table(subject, classe)} />
     </div>
     <div>
-        <label for="select-subject">Seleziona la materia:</label>
-        <select
-            name="materia"
-            id="materia"
-            bind:value={subject}
-            on:change={update_table(subject, classe)}
-        >
-            <option value="TPSI">TPSI</option>
-            <option value="informatica">Informatica</option>
-            <option value="reti">Sistemi e Reti</option>
-            <option value="sum-subjects">Totale materie</option>
-            <option value="all">Generale</option>
-        </select>
+        <Label parent="select-subject" text="Seleziona la materia:"></Label>
+        <Select options={subjects} bind:value={subject} on_change={() => update_table(subject, classe)}/>
     </div>
 </div>
 
 {#if subject === "all"}
-    <p>
+    <p class="paragraph">
         Classifica generale di tutti gli studenti di informatica non relativa a
         classe o materia scolastica
     </p>
@@ -118,57 +137,12 @@
 
 <style>
     .select-container {
-        max-width: 600px;
-        margin: auto;
         margin-top: 2%;
         margin-bottom: 2%;
-        padding: 20px;
-        background-color: #f9fafb;
-        border-radius: 10px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-        display: flex; /* Add flexbox layout */
-        justify-content: space-between; /* Space elements evenly */
     }
 
-    select {
-        width: 100%; /* Adjust width to fit side by side */
-        padding: 15px;
-        margin-bottom: 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #ffffff;
-        cursor: pointer;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-image: linear-gradient(45deg, transparent 50%, #666 50%),
-            linear-gradient(135deg, #666 50%, transparent 50%);
-        background-position:
-            calc(100% - 20px) calc(1em + 2px),
-            calc(100% - 15px) calc(1em + 2px),
-            calc(100% - 2.5em) 0.5em;
-        background-size:
-            5px 5px,
-            5px 5px,
-            1px 1.5em;
-        background-repeat: no-repeat;
-    }
-
-    select:focus {
-        outline: none;
-        border: 1px solid #66afe9;
-        box-shadow:
-            inset 0 1px 1px rgba(0, 0, 0, 0.075),
-            0 0 8px rgba(0, 0, 0, 0.6);
-    }
-
-    label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-
-    p {
+    .paragraph {
         margin-bottom: 2%;
         text-align: center;
     }
