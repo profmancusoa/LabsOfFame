@@ -105,7 +105,7 @@
             text: "Sistemi e Reti"
         },
         {
-            value: "sub-subjects",
+            value: "sum-subjects",
             text: "Totale materie"
         },
         {
