@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && echo 'lambsoffame.mancusoa.it' > build/CNAME",
+		"build": "vite build && touch build/.nojekyll && echo 'lambsoffame.mancusoa.it' > build/CNAME",
 		"preview": "vite preview"
 	},
 	"devDependencies": {
