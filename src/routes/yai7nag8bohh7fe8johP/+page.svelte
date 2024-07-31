@@ -1,6 +1,6 @@
-<a href="admin/add-points">aggiungi punti</a>
+<a href="yai7nag8bohh7fe8johP/add-points">aggiungi punti</a>
 
-<a href="admin/add-class">aggiungi classe</a>
+<a href="yai7nag8bohh7fe8johP/add-class">aggiungi classe</a>
 
 <style>
     a {
