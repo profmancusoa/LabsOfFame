@@ -14,15 +14,14 @@
     import { onMount } from "svelte";
 
     const firebaseConfig = {
-        apiKey: "AIzaSyDMmEc92Gi0791mVLMl5UcuDTuUxy5ettw",
-        authDomain: "prova-6bba2.firebaseapp.com",
+        apiKey: "AIzaSyBv2SwNbM94fs7et1ts6aClTXreO5a6zDM",
+        authDomain: "lambsoffame.firebaseapp.com",
         databaseURL:
-            "https://prova-6bba2-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "prova-6bba2",
-        storageBucket: "prova-6bba2.appspot.com",
-        messagingSenderId: "310664797099",
-        appId: "1:310664797099:web:cfcea80eb318b2a16450ee",
-        measurementId: "G-0RFXQ1M1T5",
+            "https://lambsoffame-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "lambsoffame",
+        storageBucket: "lambsoffame.appspot.com",
+        messagingSenderId: "583547239362",
+        appId: "1:583547239362:web:eda69c76496ccc9cbd345b",
     };
 
     const app = initializeApp(firebaseConfig);
