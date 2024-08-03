@@ -88,7 +88,7 @@
 
     const checkInfo = async () => {
         console.log(username, sub, points, classe);
-        if (username && sub && points && classe) {
+        if (username && sub && points >= 0 && classe) {
             output = await addQuery({
                 username: username,
                 subject: sub,
