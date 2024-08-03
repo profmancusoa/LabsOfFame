@@ -39,6 +39,18 @@
         const userGoogle = await signInGoogle();
     });
 
+    const getDate = () => {
+        let now = new Date();
+        let year = now.getFullYear();
+        let month = String(now.getMonth() + 1).padStart(2, "0");
+        let day = String(now.getDate()).padStart(2, "0");
+        let hours = String(now.getHours()).padStart(2, "0");
+        let minutes = String(now.getMinutes()).padStart(2, "0");
+        let seconds = String(now.getSeconds()).padStart(2, "0");
+        let mill = String(now.getMilliseconds()).padStart(3, "0");
+        return `${year}_${month}_${day}_${hours}:${minutes}:${seconds}.${mill}`;
+    };
+
     const calAnnoScolastico = (date) => {
         return Number(date[0]) > 6
             ? `${date[1]}-${String(Number(date[1]) + 1)}`
@@ -49,7 +61,7 @@
         try {
             const docRef = doc(
                 collection(db, "leaderboard", "toQuery", "queries"),
-                `${dataObject.username}_${dataObject.subject}_${new Date().toLocaleString("it-IT").replace(", ", "_").replaceAll('/', '-')}`
+                `${dataObject.username}_${dataObject.subject}_${getDate()}`,
             );
 
             await setDoc(docRef, {
@@ -62,7 +74,7 @@
                         .split("/")
                         .slice(1),
                 ),
-                time_stamp: new Date().toLocaleString("it-IT"),
+                time_stamp: getDate(),
                 points: dataObject.points,
                 class: dataObject.class,
             });
