@@ -138,7 +138,7 @@
                 />
               {/await}
 
-              <div class="ps-3 pr-6">
+              <div class="ps-3 xl:pr-6">
                 <div class="text-base gamer-font text-4xl pr-6">
                   {item.username}
                 </div>
@@ -169,7 +169,7 @@
   }
 
   /* Dispositivi mobili */
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 719px) {
     .gamer-font {
       font-family: "Knight-Warrior";
       font-size: large;
