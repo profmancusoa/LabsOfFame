@@ -161,7 +161,30 @@
         "Trovato_Nickolas",
         "Vigano_Luca",
     ];
-    const info_3 = [];
+
+    const info_3 = [
+        "Bianchi_Emanuele",
+        "Bracco_Anna",
+        "Busca_Matteo",
+        "Colasanto_Alessio",
+        "Correndo_Marco",
+        "Dalipi_Andi",
+        "Danci_Davide",
+        "DeFrancisco_Pietro",
+        "Forno_Davide",
+        "Gervasio_Gregorio",
+        "Gorun_Jennifer",
+        "LaValle_Marco",
+        "Marusich_Samuele",
+        "Prevedi_Daniele",
+        "Pugliese_Alessandro",
+        "Ramirez_Giorgio",
+        "Ruscica_Lorenzo",
+        "Sabbadini_Nicolas",
+        "Savio_Gabriele",
+        "Tammadon_Sam",
+        "Wang_Enrico",
+    ];
 
     let sub,
         points,
@@ -245,7 +268,7 @@
         }}
     />
 
-    {#if selected.length == 0 || !sub || !points || !classe }
+    {#if selected.length == 0 || !sub || !points || !classe}
         <p style="color: red;">Completare tutti i campi</p>
     {/if}
 </body>
