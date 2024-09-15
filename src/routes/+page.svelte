@@ -144,10 +144,10 @@
             value: "TPSI",
             text: "TPSI",
         },
-        {
-            value: "informatica",
-            text: "Informatica",
-        },
+        // {
+        //     value: "informatica",
+        //     text: "Informatica",
+        // },
         {
             value: "reti",
             text: "Sistemi e Reti",

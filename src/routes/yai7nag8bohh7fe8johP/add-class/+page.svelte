@@ -254,7 +254,7 @@
     <br />
     Subject:
     <select name="classe" id="classe" bind:value={sub}>
-        {#each ["TPSI", "reti", "informatica"] as e}
+        {#each ["TPSI", "Reti"] as e}
             <option value={e}>{e}</option>
         {/each}
     </select><br /><br />
