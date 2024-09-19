@@ -177,7 +177,7 @@
         "Ruscica_Lorenzo",
         "Sabbadini_Nicolas",
         "Savio_Gabriele",
-        "Tammadon_Sam",
+        "Tamaddon_Sam",
         "Wang_Enrico",
     ];
 
