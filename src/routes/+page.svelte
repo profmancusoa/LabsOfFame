@@ -70,7 +70,7 @@
 
     const update_table = async (mat, classe) => {
         switch (mat) {
-            case "sum-subjects":
+            case "SUM-SUBJECTS":
                 leaderboard = await getQueriesFiltered(
                     undefined,
                     calAnnoScolastico(
@@ -84,7 +84,7 @@
                 );
                 break;
 
-            case "all":
+            case "ALL":
                 leaderboard = await getQueriesFiltered(
                     undefined,
                     undefined,
@@ -149,15 +149,15 @@
         //     text: "Informatica",
         // },
         {
-            value: "reti",
+            value: "RETI",
             text: "Sistemi e Reti",
         },
         {
-            value: "sum-subjects",
+            value: "SUM-SUBJECTS",
             text: "Totale materie",
         },
         {
-            value: "all",
+            value: "ALL",
             text: "Generale",
         },
     ];
