@@ -77,6 +77,7 @@
                 time_stamp: getDate(),
                 points: dataObject.points,
                 class: dataObject.class,
+                comment: dataObject.commento,
             });
 
             return "Query aggiunta correttamente";
@@ -87,13 +88,14 @@
     };
 
     const checkInfo = async () => {
-        console.log(username, sub, points, classe);
+        console.log(username, sub, points, classe, commento);
         if (username && sub && points >= 0 && classe) {
             output = await addQuery({
                 username: username,
                 subject: sub,
                 points: points,
                 class: classe,
+                commento: commento,
             });
         } else return;
 
@@ -138,7 +140,6 @@
         "Attanasio_Edoardo",
         "Casini_Sara",
         "Dellavalle_Andrea",
-        "Garcia_James",
         "Gavinelli_Rebecca",
         "Gritella_Matteo",
         "Macchi_Federico",
@@ -184,6 +185,7 @@
     let username,
         sub,
         points,
+        commento,
         classe,
         selectList = [],
         output;
@@ -234,6 +236,8 @@
         {/each}
     </select><br /><br />
     Points: <input type="number" placeholder="10" bind:value={points} />
+
+    Commento: <input type="text" placeholder="" bind:value={commento} />
 
     <input
         id="submit"

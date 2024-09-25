@@ -77,6 +77,7 @@
                 time_stamp: getDate(),
                 points: dataObject.points,
                 class: dataObject.class,
+                comment: dataObject.comment,
             });
 
             console.log(
@@ -99,6 +100,7 @@
                     subject: sub,
                     points: points,
                     class: classe,
+                    comment: commento,
                 });
             });
         } else return;
@@ -190,6 +192,7 @@
     let sub,
         points,
         classe,
+        commento,
         selectList = [],
         selected = [];
 </script>
@@ -260,6 +263,7 @@
     </select><br /><br />
     Points: <input type="number" placeholder="10" bind:value={points} />
 
+    Commento: <input type="text" placeholder="" bind:value={commento} />
     <input
         id="submit"
         type="button"
