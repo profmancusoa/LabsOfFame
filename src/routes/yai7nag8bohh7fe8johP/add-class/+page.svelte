@@ -146,7 +146,6 @@
         "Attanasio_Edoardo",
         "Casini_Sara",
         "Dellavalle_Andrea",
-        "Garcia_James",
         "Gavinelli_Rebecca",
         "Gritella_Matteo",
         "Macchi_Federico",
