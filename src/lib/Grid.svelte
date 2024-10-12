@@ -9,8 +9,8 @@
     Spinner,
   } from "flowbite-svelte";
   import { AwardSolid } from "flowbite-svelte-icons";
-  import user_placeholder from "./avatars/user_placeholder.png";
-  //import user_placeholder from "../../static/avatars/user_placeholder.png";
+  // import user_placeholder from "./avatars/user_placeholder.png";
+  import { get_user_image } from "$lib/helper";
 
   // const user_placeholder = "/avatars/user_placeholder.png";
   const table_padding = "px-4 py-6 w-1/6";
@@ -33,35 +33,6 @@
     }
   }
   export let items;
-
-  /* Import all images from avatars folder */
-  const imageModules = import.meta.glob("./avatars/*", {
-    eager: false, // Load images on page load
-  });
-
-  /* Extract username from avatar's path. 
-    import.glob contain full path but we want only the filename(username) 
-  */
-  function image_to_username(images) {
-    // Get full path
-    const keys = Object.keys(images);
-    keys.forEach((a) => {
-      let val = imageModules[a]; // Backup value
-      delete images[a]; // Delete fullpath key
-      const username = a.replace("./avatars/", "").replace(".png", ""); // Cleanup path to get only filename(username)
-      images[username] = val; // Assign image to username
-    });
-    return images;
-  }
-
-  const user_image = image_to_username(imageModules);
-
-  async function get_user_image(username) {
-    const real_username = username.toLowerCase();
-    return Object.hasOwn(user_image, real_username)
-      ? (await user_image[real_username]()).default
-      : user_placeholder;
-  }
 </script>
 
 <!-- 
