@@ -66,7 +66,7 @@
     const addQuery = async (dataObject) => {
         try {
             const docRef = doc(
-                collection(db, "leaderboard2", "toQuery", "queries"),
+                collection(db, "leaderboard", "toQuery", "queries"),
                 `${dataObject.username}_${dataObject.subject}_${getDate()}`,
             );
 
