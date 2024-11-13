@@ -34,7 +34,6 @@ export const info_4 = [
     "Ardoino_Matteo",
     "Attanasio_Edoardo",
     "Casini_Sara",
-    "Dellavalle_Andrea",
     "Gavinelli_Rebecca",
     "Gritella_Matteo",
     "Macchi_Federico",
