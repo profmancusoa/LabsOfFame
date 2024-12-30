@@ -74,6 +74,7 @@ export const info_3 = [
     "Savio_Gabriele",
     "Tamaddon_Sam",
     "Wang_Enrico",
+    "Yu_Daniel"
 ];
 
 /* Import all images from avatars folder */
@@ -103,4 +104,10 @@ export async function get_user_image(username) {
     return Object.hasOwn(user_image, real_username)
         ? (await user_image[real_username]()).default
         : user_placeholder;
+}
+
+
+export function getQuadrimestre() {
+    const month = new Date().getMonth() + 1;
+    return [9, 10, 11, 12].includes(month) ? 1 : 2;
 }
